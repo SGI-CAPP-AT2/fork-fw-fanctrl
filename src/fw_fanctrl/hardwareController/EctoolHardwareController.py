@@ -1,7 +1,7 @@
 import re
 import subprocess
 from abc import ABC
-
+from lib_example.shgi_mod import get_temprature_py 
 from fw_fanctrl.hardwareController.HardwareController import HardwareController
 
 
@@ -27,29 +27,19 @@ class EctoolHardwareController(HardwareController, ABC):
         for x in re.findall(r"^\d+", raw_out, re.MULTILINE):
             if x not in battery_sensors:
                 self.nonBatterySensors.append(x)
-
+    """
+        Modified by Shubham Ingale 
+        For GSoC TakeHome Qualification Task at CCExtractor 
+        This function uses ectool for getting temprature of all nonBatterySensors
+    """
     def get_temperature(self):
         if self.noBatterySensorMode:
-            raw_out = "".join(
-                [
-                    subprocess.run(
-                        "ectool temps " + x,
-                        stdout=subprocess.PIPE,
-                        shell=True,
-                        text=True,
-                    ).stdout
-                    for x in self.nonBatterySensors
-                ]
-            )
+            raw_temps =  get_temprature_py()
         else:
-            raw_out = subprocess.run(
-                "ectool temps all",
-                stdout=subprocess.PIPE,
-                shell=True,
-                text=True,
-            ).stdout
-        raw_temps = re.findall(r"\(= (\d+) C\)", raw_out)
+            raw_temps = get_temprature_py()
+        # raw_temps = re.findall(r"\(= (\d+) C\)", raw_out)
         temps = sorted([x for x in [int(x) for x in raw_temps] if x > 0], reverse=True)
+        print(temps)
         # safety fallback to avoid damaging hardware
         if len(temps) == 0:
             return 50
