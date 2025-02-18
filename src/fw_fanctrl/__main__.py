@@ -10,18 +10,13 @@ from fw_fanctrl.socketController.UnixSocketController import UnixSocketControlle
 
 
 def main():
+    print("NEW COMMENT")
     try:
         args = CommandParser().parse_args()
     except Exception as e:
         _cre = CommandResult(CommandStatus.ERROR, str(e))
         print(_cre.to_output_format(OutputFormat.NATURAL), file=sys.stderr)
         exit(1)
-    if args.command == "dummy":
-        hardware_controller = EctoolHardwareController(no_battery_sensor_mode=False)
-        print(hardware_controller.get_temperature())
-        hardware_controller_with_nbs = EctoolHardwareController(no_battery_sensor_mode=True)
-        print(hardware_controller_with_nbs.get_temperature())
-    
     socket_controller = UnixSocketController()
     if args.socket_controller == "unix":
         socket_controller = UnixSocketController()
