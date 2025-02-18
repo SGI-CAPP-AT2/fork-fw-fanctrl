@@ -50,7 +50,7 @@ class FanController:
         t.start()
 
     def get_actual_temperature(self):
-        print("HERE THE HW CONTROLLER USES CODE: ",self.hardware_controller.get_temperature())
+        # print("HERE THE HW CONTROLLER USES CODE: ",self.hardware_controller.get_temperature())
         return self.hardware_controller.get_temperature()
 
     def set_speed(self, speed):

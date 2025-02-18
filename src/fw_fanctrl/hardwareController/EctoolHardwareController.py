@@ -34,17 +34,17 @@ class EctoolHardwareController(HardwareController, ABC):
         This function uses ectool for getting temprature of all nonBatterySensors
     """
     def get_temperature(self):
-        print("GET TEMPERATUR CALLED")
+        # print("GET TEMPERATUR CALLED")
         if self.noBatterySensorMode:
             if(self.nonBatterySensors!=None):
                 raw_temps =  get_temperature_by_sensors_py(self.nonBatterySensors)
             else:
                 raw_temps = []
-            print(raw_temps)
+            # print(raw_temps)
         else:
             raw_temps = get_temprature_py()
-            print(raw_temps)
-        print(raw_temps)
+            # print(raw_temps)
+        # print(raw_temps)
         # raw_temps = re.findall(r"\(= (\d+) C\)", raw_out)
         temps = sorted([x for x in [int(x) for x in raw_temps] if x > 0], reverse=True)
         # safety fallback to avoid damaging hardware

@@ -10,7 +10,7 @@ from fw_fanctrl.socketController.UnixSocketController import UnixSocketControlle
 
 
 def main():
-    print("NEW COMMENT")
+    # print("NEW COMMENT")
     try:
         args = CommandParser().parse_args()
     except Exception as e:
