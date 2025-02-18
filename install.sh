@@ -91,8 +91,12 @@ function sanitizePath() {
 }
 
 function build() {
+    echo "cleaning built package"
+    rm -rf build dist *.egg-info  # Clean build directories and egg-info
+    python setup.py clean --all # Clean build artifacts
     echo "building package"
-    python -m build -s
+    python setup.py build_ext --inplace -j$(nproc) || exit 1 
+    python -m build -s 
     find . -type d -name "*.egg-info" -exec rm -rf {} + 2> "/dev/null" || true
 }
 

@@ -21,7 +21,7 @@ exclude = '''
 '''
 
 [build-system]
-requires = ["setuptools>=75.2.0"]
+requires = ["setuptools>=75.2.0", "cython"]
 build-backend = "setuptools.build_meta"
 
 [project]

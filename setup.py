@@ -1,18 +1,16 @@
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
-import os
 
-csrc_dir = os.path.abspath("./csrc")
-
-shgi_mod = Extension(
-    "lib_example.shgi_mod",  # Note the dotted name here!
-    sources=["src/lib_example/src/wrapper.pyx", "src/lib_example/csrc/lib.c"],
-    include_dirs=[csrc_dir],
+lib_example_ext = Extension(
+    "lib_example.shgi_mod",
+    sources=["src/lib_example/csrc/lib.c", "src/lib_example/src/wrapper.pyx"],
+    include_dirs=["src/lib_example/csrc"],
 )
 
 setup(
-    ext_modules=cythonize(shgi_mod),
-    include_dirs=[csrc_dir],
-    package_dir={'': 'src'}, # Tell setuptools where the packages are
-    packages=['lib_example'], # Important: List the package(s)
+    name="fw_fanctrl",
+    version="0.1.0",
+    packages=find_packages(where="src"),  
+    package_dir={"": "src"},
+    ext_modules=cythonize([lib_example_ext]),
 )
