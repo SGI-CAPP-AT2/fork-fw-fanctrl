@@ -1,3 +1,8 @@
+```
+This branch is for Qualification task towards GSoC Project Create Python bindings for ectool. (https://ccextractor.org/public/gsoc/2025/fw-fanctrl/)
+
+It uses Cython for FFI
+```
 # fw-fanctrl
 
 [![Static Badge](https://img.shields.io/badge/Linux%E2%80%AF%2F%E2%80%AFGlobal-FCC624?style=flat&logo=linux&logoColor=FFFFFF&label=Platform&link=https%3A%2F%2Fgithub.com%2FTamtamHero%2Ffw-fanctrl%2Ftree%2Fmain)](https://github.com/TamtamHero/fw-fanctrl/tree/main)
