@@ -1,7 +1,8 @@
 import re
 import subprocess
 from abc import ABC
-from lib_example.shgi_mod import get_temprature_py 
+from lib_example.shgi_mod import get_temprature_py
+from lib_example.shgi_mod import get_temperature_by_sensors_py
 from fw_fanctrl.hardwareController.HardwareController import HardwareController
 
 
@@ -34,12 +35,16 @@ class EctoolHardwareController(HardwareController, ABC):
     """
     def get_temperature(self):
         if self.noBatterySensorMode:
-            raw_temps =  get_temprature_py()
+            if(self.nonBatterySensors!=None):
+                raw_temps =  get_temperature_by_sensors_py(self.nonBatterySensors)
+            else:
+                raw_temps = []
+            print(raw_temps)
         else:
             raw_temps = get_temprature_py()
+            print(raw_temps)
         # raw_temps = re.findall(r"\(= (\d+) C\)", raw_out)
         temps = sorted([x for x in [int(x) for x in raw_temps] if x > 0], reverse=True)
-        print(temps)
         # safety fallback to avoid damaging hardware
         if len(temps) == 0:
             return 50

@@ -6,3 +6,6 @@ from fw_fanctrl.hardwareController.EctoolHardwareController import EctoolHardwar
 ectoolhwc = EctoolHardwareController(no_battery_sensor_mode=False)
 print("The temprature is: ")
 print(ectoolhwc.get_temperature())
+ectoolhwcws = EctoolHardwareController(no_battery_sensor_mode=True)
+print("The temprature with no battery sensors is: ")
+print(ectoolhwcws.get_temperature())
