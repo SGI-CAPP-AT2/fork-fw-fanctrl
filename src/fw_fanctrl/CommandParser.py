@@ -109,6 +109,14 @@ class CommandParser:
             choices=["all", "active", "current", "list", "speed"],
             default="all",
         )
+        """ 
+        This command is added for testing integration with fw_fanctrl
+        """
+        commands_sub_parser.add_parser(
+            "dummy",
+            help="a dummy command to test proof of work"
+        )
+        
 
     def init_legacy_parser(self):
         self.legacy_parser = argparse.ArgumentParser(add_help=False)
