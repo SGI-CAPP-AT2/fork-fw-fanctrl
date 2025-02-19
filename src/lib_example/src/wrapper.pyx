@@ -19,8 +19,8 @@ def get_temperature_by_sensors_py(list sensor_names):
     cdef list temperatures = []
 
     if not c_sensors:
-        raise MemoryError("Failed to allocate memory for sensors array")
-
+        return temperatures
+        
     try:
         for i in range(n):
             c_sensors[i] = strdup(sensor_names[i].encode('utf-8'))
