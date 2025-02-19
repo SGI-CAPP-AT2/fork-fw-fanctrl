@@ -1,4 +1,4 @@
-from libc.stdlib cimport free
+from libc.stdlib cimport free, malloc
 from libc.string cimport strdup
 cimport cython
 
@@ -6,9 +6,6 @@ cdef extern from "../csrc/lib.h":
     float* get_temprature(int* size)
     float* get_temprature_by_sensors(char* sensors[], int n)
 
-cdef extern from "stdlib.h":
-    void* malloc(size_t size)
-    void free(void* ptr)
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

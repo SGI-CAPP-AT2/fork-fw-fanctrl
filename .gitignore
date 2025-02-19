@@ -260,5 +260,5 @@ fabric.properties
 .idea/
 .temp/
 
-## added by shubham
+## C template
 wrapper.c

@@ -1,8 +1,7 @@
 import re
 import subprocess
 from abc import ABC
-from lib_example.shgi_mod import get_temprature_py
-from lib_example.shgi_mod import get_temperature_by_sensors_py
+from lib_example.shgi_mod import get_temprature_py, get_temperature_by_sensors_py
 from fw_fanctrl.hardwareController.HardwareController import HardwareController
 
 
