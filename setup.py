@@ -3,7 +3,7 @@ from Cython.Build import cythonize
 
 lib_example_ext = Extension(
     "lib_example.shgi_mod",
-    sources=["src/lib_example/csrc/lib.c", "src/lib_example/src/wrapper.pyx"],
+    sources=["src/lib_example/csrc/ectool_func.c", "src/lib_example/src/wrapper.pyx"],
     include_dirs=["src/lib_example/csrc"],
 )
 
